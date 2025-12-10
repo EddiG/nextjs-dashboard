@@ -98,7 +98,7 @@ export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
 ) {
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  const offset = Math.max((currentPage - 1) * ITEMS_PER_PAGE, 0);
 
   try {
     const invoices = await sql<InvoicesTable[]>`
